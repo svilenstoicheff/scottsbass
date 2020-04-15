@@ -32,8 +32,7 @@ h1 {
     box-shadow: .5em .5em .5em #ddd;
 }
 
-#F9F9F9 .duration,
-.caption {
+.duration, .caption {
     display: block;
 }
 

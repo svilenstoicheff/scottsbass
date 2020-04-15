@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet" />
@@ -8,19 +9,17 @@
         function getData() {
             try {
                 const url = 'https://api.jsonbin.io/b/5e95bd3c5fa47104cea035df';
-            fetch(url)
-                .then(response => response.json())
-                .then((data) => {
-                    console.log(data);
-
-                    data.items.map((card) => {
-                        displayCard(card);
+                fetch(url)
+                    .then(response => response.json())
+                    .then((data) => {
+                        data.items.map((card) => {
+                            displayCard(card);
+                        });
                     });
-                });
 
-            } catch(error) {
+            } catch (error) {
                 console.error('An error occured: ' + error);
-                //ES6 fetch is not supported, provide another solution if needed.
+                //ES6 fetch is not supported, or request failed - provide another solution if needed.
             }
         }
 
@@ -74,4 +73,5 @@
     </template>
 
 </body>
+
 </html>
