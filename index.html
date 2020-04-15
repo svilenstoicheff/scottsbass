@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="index.css" />
+    <script>
+        function getData() {
+            try {
+                const url = 'https://api.jsonbin.io/b/5e95bd3c5fa47104cea035df';
+            fetch(url)
+                .then(response => response.json())
+                .then((data) => {
+                    console.log(data);
+
+                    data.items.map((card) => {
+                        displayCard(card);
+                    });
+                });
+
+            } catch(error) {
+                console.error('An error occured: ' + error);
+                //ES6 fetch is not supported, provide another solution if needed.
+            }
+        }
+
+        function displayCard(card) {
+            if ('content' in document.createElement('template')) {
+                const cardTemplate = document.querySelector('#lessonCardTemplate');
+                let container = document.querySelector('#lessonsContainer');
+
+                let clone = cardTemplate.content.cloneNode(true);
+                let thumbnail = clone.querySelector('.card');
+
+                clone.querySelector('.caption').textContent = card.title;
+                if (card.runningTime) {
+                    clone.querySelector('.duration').textContent = `${card.runningTime} mins`;
+                } else {
+                    clone.querySelector('.duration').style = "display: none";
+                }
+
+                thumbnail.style = 'background-image: url(' + card.image + ')';
+                if (card.url) {
+                    thumbnail.classList.add('clickable');
+                    thumbnail.addEventListener('click', (e) => {
+                        location.href = card.url;
+                    });
+                }
+
+                container.appendChild(clone);
+            } else {
+                console.log('Templates not supported');
+                //<template> not supported, use a traditional solution - concatenated strings, Mustache, etc. 
+            }
+        }
+    </script>
+</head>
+
+<body onload="getData()">
+    <header>
+        <h1>Scott's Bass Lessons</h1>
+    </header>
+    <main>
+        <section id="lessonsContainer" class="lessons">
+            <!-- populate cards here -->
+        </section>
+    </main>
+
+    <template id="lessonCardTemplate">
+        <div class="card">
+            <span class="caption"></span>
+            <span class="duration"></span>
+        </div>
+    </template>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+html, body, main,section {
+    height: 100%;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.lessons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    border: 1px solid #444a5e;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column-reverse;
+    flex-basis: 380px;
+    font-family: 'Roboto Condensed', sans-serif;
+    max-width: 380px; /* most phones accommodate this */
+    max-height: 380px;
+    min-height: 380px; /* ensure the card is square in most viewports - on iPhone 5 it will be rectangular */
+    min-width: 320px; /* make sure that card is not clipped on older phones, such as iPhone 5 */
+    margin: .5em;
+}
+
+.card:hover {
+    box-shadow: .5em .5em .5em #ddd;
+}
+
+#F9F9F9 .duration,
+.caption {
+    display: block;
+}
+
+.caption {
+    background-color: #272B38;
+    color: #fff;
+    padding: 1em;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    min-height: 2.3em;
+}
+
+.duration {
+    background-image: url(clock.png);
+    background-size: 1em;
+    background-repeat: no-repeat;
+    padding: .2em;
+    padding-left: 1.5em;
+    background-position-y: center;
+    background-position-x: .2em;
+    background-color: #fff;
+    max-width: 20%;
+    text-transform: uppercase;
+    border: 1px solid #444a5e;
+}
+
+.clickable {
+    cursor: pointer;
+}
